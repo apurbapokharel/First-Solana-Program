@@ -1,0 +1,25 @@
+[package]
+name = "token-sell-program"
+version = "0.1.0"
+edition = "2018"
+
+[features]
+# https://docs.solana.com/developing/on-chain-programs/developing-rust#project-layout
+#
+# When toggled on this feature will cause the crate to not compile a
+# bpf entrypoint.
+#
+# See the corresponding `#[cfg(not(feature = "exclude_entrypoint"))]`
+# in lib.rs. This is needed so that other Solana programs can import
+# helper functions from this library without causing symbol conflicts
+# with our entrypoint.
+exclude_entrypoint = []
+
+[dependencies]
+solana-program = "1.9.4"
+thiserror = "1.0.24"
+arrayref = "0.3.6"
+spl-token = {version = "3.2.0", features = ["no-entrypoint" ]}
+
+[lib]
+crate-type = ["cdylib", "lib"]
